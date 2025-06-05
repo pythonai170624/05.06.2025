@@ -44,9 +44,15 @@ def sum_two_post(two_numbers: TwoNumbers):
     result = bl.sum_two(two_numbers.a, two_numbers.b)
     return {"sum": result}
 
-@app.get("/get_entities")
+@app.get("/get-entities")
 def get_entities(text: str):
     print(f"========= input get_entities: {text}")
     result = bl.get_entities(text)
     return {"entities": result}
+
+@app.get("/get-person")
+def get_person(text: str):
+    print(f"========= input get_person: {text}")
+    result = bl.get_person(text)
+    return {"people": result}
 
