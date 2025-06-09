@@ -12,6 +12,26 @@ class Item(BaseModel):
     price: float
     in_stock: bool = True
 
+@app.get("/chatgpt")
+def get_resp(text: str):
+    from openai import OpenAI
+
+    client = OpenAI(
+        api_key="<replace with your key>"
+    )
+
+    completion = client.chat.completions.create(
+        model="gpt-4o-mini",
+        store=True,
+        messages=[
+            {"role": "user", "content": text}
+        ]
+    )
+
+    print(completion.choices[0].message.content);
+    return {"message": completion.choices[0].message.content}
+
+
 # Define a simple GET endpoint
 @app.get("/welcome")
 def read_root():
